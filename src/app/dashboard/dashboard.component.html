@@ -1,4 +1,5 @@
-<app-data [currentPage]="currentPage" (selectPageEvent)="receiveMessage($event)"></app-data>
+<app-data></app-data>
 <br>
 <app-button [showAddData]="showAddData" (toggleButtonClickEvent)="toggleButtonClicked($event)"></app-button>
-<app-add-data *ngIf="showAddData" [currentPage]="currentPage"></app-add-data>
+<app-add-data *ngIf="showAddData" (childAdded)="toggleShowToast()"></app-add-data>
+<ngb-toast *ngIf="showToast" [delay]="2500" class="bg-success text-light position-absolute bottom-0 end-0">Kind wurde erfolgreich hinzugefügt</ngb-toast>

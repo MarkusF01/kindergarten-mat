@@ -6,11 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  public currentPage: number = 1;
   public showAddData = true;
+  public showToast = false;
 
-  receiveMessage(newPageCount: number) {
-    this.currentPage = newPageCount;
+  toggleShowToast(){
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000);
   }
 
   toggleButtonClicked(showAddData: boolean) {

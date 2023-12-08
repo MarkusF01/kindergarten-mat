@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Kindergarden } from './interfaces/Kindergarden';
 import { StoreService } from './store.service';
 import { Child, ChildResponse } from './interfaces/Child';
-import { CHILDREN_PER_PAGE } from './constants';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,23 +16,29 @@ export class BackendService {
     });
   }
 
-  public getChildren(page: number) {
-    this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${CHILDREN_PER_PAGE}`, { observe: 'response' }).subscribe(data => {
+  public getChildrenCurrentPage() {
+    this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${this.storeService.currentPage+1}&_limit=${this.storeService.childrenPerPage}`, { observe: 'response' }).subscribe(data => {
       this.storeService.children = data.body!;
       this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
-
     });
     }
 
-    public addChildData(child: Child, page:  number) {
-      this.http.post('http://localhost:5000/childs', child).subscribe(_ => {
-        this.getChildren(page);
+    public addChildData(child: Child, isSuccessful?: (success: boolean) => void) {
+      this.http.post('http://localhost:5000/childs', child).subscribe({
+        next: () => {
+          this.getChildrenCurrentPage()
+          isSuccessful && isSuccessful(true);
+        },
+        error: () => {
+          console.log("error adding child")
+          isSuccessful && isSuccessful(false);
+        }
       })
     }
 
-    public deleteChildData(childId: string, page: number) {
+    public deleteChildData(childId: string) {
       this.http.delete(`http://localhost:5000/childs/${childId}`).subscribe(_=> {
-        this.getChildren(page);
+        this.getChildrenCurrentPage();
       })
     }
   }
