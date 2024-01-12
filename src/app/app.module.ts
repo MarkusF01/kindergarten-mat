@@ -20,6 +20,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {NgbToast} from "@ng-bootstrap/ng-bootstrap";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {KinderGardenPickerComponent} from "./dashboard/kindergarden-picker/kinder-garden-picker.component";
+import {MatSortModule} from "@angular/material/sort";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { KindergardenOverviewComponent } from './kindergarden-overview/kindergarden-overview.component';
+import { KindergardenDetailComponent } from './kindergarden-detail/kindergarden-detail.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -28,7 +34,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     AddDataComponent,
     DataComponent,
     HeaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    KinderGardenPickerComponent,
+    KindergardenOverviewComponent,
+    KindergardenDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +55,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatFormFieldModule,
     MatSelectModule,
     NgbToast,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de'},

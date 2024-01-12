@@ -1,0 +1,11 @@
+<mat-spinner *ngIf="storeService.kindergardens.length == 0"></mat-spinner>
+
+<mat-card *ngIf="storeService.kindergardens.length > 0">
+  <mat-card-title>Kindergarten: {{storeService.kindergardens[id].name}}</mat-card-title>
+  <mat-card-content>
+    <div>Id: {{storeService.kindergardens[id].id}}</div>
+    <div>Address: {{storeService.kindergardens[id].address}}</div>
+    <div>Betreiber: {{storeService.kindergardens[id].betreiber}}</div>
+    <div>Typ: {{storeService.kindergardens[id].typ === typ.oeffentlich ? "öffentlich" : "privat"}}</div>
+  </mat-card-content>
+</mat-card>

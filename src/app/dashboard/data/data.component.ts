@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BackendService } from 'src/app/shared/backend.service';
 import { CHILDREN_PER_PAGE } from 'src/app/shared/constants';
 import { StoreService } from 'src/app/shared/store.service';
 import {PageEvent} from "@angular/material/paginator";
+import {Sort} from "@angular/material/sort";
+import {ChildResponse} from "../../shared/interfaces/Child";
 
 @Component({
   selector: 'app-data',
   templateUrl: './data.component.html',
   styleUrls: ['./data.component.scss']
 })
-export class DataComponent implements OnInit {
+export class DataComponent {
 
   constructor(public storeService: StoreService, private backendService: BackendService) {}
-  displayedColumns: string[] = ['name', 'kindergardenName', 'address', 'birthDate', "age", "remove"];
+  displayedColumns: string[] = ['name', 'kindergardenId', 'address', 'birthDate', "age", "registerDate", "remove"];
   protected readonly CHILDREN_PER_PAGE = CHILDREN_PER_PAGE;
-  ngOnInit(): void {
-    this.backendService.getChildrenCurrentPage();
-  }
 
   getAge(birthDate: string) {
     var today = new Date();
@@ -29,14 +28,20 @@ export class DataComponent implements OnInit {
     return age;
   }
 
-  public cancelRegistration(childId: string) {
-    this.backendService.deleteChildData(childId);
+  public cancelRegistration(child: ChildResponse) {
+    this.backendService.deleteChildData(child);
   }
 
   handlePageEvent(e: PageEvent) {
     this.storeService.currentPage = e.pageIndex;
     this.storeService.childrenPerPage = e.pageSize;
     this.backendService.getChildrenCurrentPage();
+  }
+
+  sortChange(sortState: Sort){
+    this.storeService.currentSort = sortState;
+    console.log(sortState)
+    this.backendService.getChildrenCurrentPage()
   }
 }
 

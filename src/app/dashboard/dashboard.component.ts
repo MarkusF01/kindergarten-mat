@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {StoreService} from "../shared/store.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +9,9 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
   public showAddData = true;
   public showToast = false;
+
+  constructor(public storeService: StoreService) {
+  }
 
   toggleShowToast(){
     this.showToast = true;
