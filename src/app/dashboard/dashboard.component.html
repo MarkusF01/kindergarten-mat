@@ -1,9 +1,12 @@
 <mat-spinner *ngIf="storeService.initialDataLoading"></mat-spinner>
 
 <ng-container *ngIf="!storeService.initialDataLoading">
-  <app-data></app-data>
-  <app-kindergarden-picker />
-  <br>
+
+  <div class="child-display">
+    <app-child-filter />
+    <app-data />
+  </div>
+
   <app-button [showAddData]="showAddData" (toggleButtonClickEvent)="toggleButtonClicked($event)"></app-button>
   <app-add-data *ngIf="showAddData" (childAdded)="toggleShowToast()"></app-add-data>
   <ngb-toast *ngIf="showToast" [delay]="2500" class="bg-success text-light position-absolute bottom-0 end-0">Kind wurde erfolgreich hinzugefügt</ngb-toast>

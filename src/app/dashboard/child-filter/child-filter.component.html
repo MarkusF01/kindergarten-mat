@@ -1,5 +1,6 @@
 <div class="filter-wrapper">
-  <mat-label>Filter by kindergarden</mat-label>
+  <h3>Wählen Sie einen Kindergarten, um ausschließlich Kinder aus dieser Einrichtung anzuzeigen.</h3>
+
   <form [formGroup]="kindergardenForm" (submit)="onChange()">
     <mat-select formControlName="kindergardenId">
       <mat-option [value]="-1">All Kindergardens</mat-option>

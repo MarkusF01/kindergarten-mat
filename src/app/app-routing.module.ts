@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutPageComponent } from './about-page/about-page.component';
+import { ContactPageComponent } from './about-page/contact-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {KindergardenOverviewComponent} from "./kindergarden-overview/kindergarden-overview.component";
 import {KindergardenDetailComponent} from "./kindergarden-detail/kindergarden-detail.component";
@@ -8,7 +8,7 @@ import {KindergardenDetailComponent} from "./kindergarden-detail/kindergarden-de
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'about', component: AboutPageComponent },
+  { path: 'contact', component: ContactPageComponent },
   { path: 'kindergardens', component: KindergardenOverviewComponent },
   { path: 'kindergardens/:id', component: KindergardenDetailComponent }
 

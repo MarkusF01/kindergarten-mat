@@ -18,9 +18,10 @@ export class KindergardenDetailComponent implements OnInit {
 
   ngOnInit() {
     this.backendService.getKindergardens()
+
     const id = this.route.snapshot.paramMap.get('id');
     if(id !== null){
-      this.id = parseInt(id);
+      this.id = parseInt(id)-1;
     }
   }
 

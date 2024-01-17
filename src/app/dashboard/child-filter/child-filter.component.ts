@@ -4,11 +4,11 @@ import {BackendService} from 'src/app/shared/backend.service';
 import {StoreService} from 'src/app/shared/store.service';
 
 @Component({
-  selector: 'app-kindergarden-picker',
-  templateUrl: './kinder-garden-picker.component.html',
-  styleUrls: ['./kinder-garden-picker.component.scss'],
+  selector: 'app-child-filter',
+  templateUrl: './child-filter.component.html',
+  styleUrls: ['./child-filter.component.scss'],
 })
-export class KinderGardenPickerComponent implements OnInit{
+export class ChildFilterComponent implements OnInit{
 
   constructor(private formbuilder: FormBuilder,
               public storeService: StoreService,
@@ -18,7 +18,6 @@ export class KinderGardenPickerComponent implements OnInit{
   public kindergardenForm: any;
 
   ngOnInit(): void {
-
     this.kindergardenForm = this.formbuilder.group({
       kindergardenId: [-1, Validators.required],
     })
